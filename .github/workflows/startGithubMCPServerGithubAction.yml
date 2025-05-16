@@ -1,0 +1,38 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: execute start server command
+        uses: cross-the-world/ssh-scp-ssh-pipelines@v1.1.4
+        with:
+          host: 137.184.23.220
+          port: 22
+          user: root
+          # content of ssh private key. such as raw content of ~/.ssh/id_rsa
+          key: ${{ secrets.PRIVATE_KEY }}
+          first_ssh: |
+            sed -i '/MYGITHUB_PERSONAL_ACCESS_TOKEN/d' ~/.bashrc && echo 'export MYGITHUB_PERSONAL_ACCESS_TOKEN="${{ secrets.MYGITHUB_PERSONAL_ACCESS_TOKEN }}"' >> ~/.bashrc
+            source ~/.bashrc
+            rm -rf ~/Program/mcp-proxy/runGithubMCPStdioServer.sh
+            rm -rf ~/Program/mcp-proxy/restart.sh
+          scp: |
+            './runGithubMCPStdioServer.sh' => ~/Program/mcp-proxy/
+            './restart.sh' => ~/Program/mcp-proxy/
+          last_ssh: |
+            chmod +x ~/Program/mcp-proxy/runGithubMCPStdioServer.sh
+            chmod +x ~/Program/mcp-proxy/restart.sh
+            sh ~/Program/mcp-proxy/restart.sh

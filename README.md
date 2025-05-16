@@ -14,5 +14,5 @@ uv tool install git+https://github.com/sparfenyuk/mcp-proxy
 (更新命令为`uv tool upgrade --reinstall`，删除命令为`uv tool uninstall mcp-proxy`)
 - 执行mcp-proxy命令启动github mcp server
 ```
-mcp-proxy sh startGithubMCPServer.sh --port=8085 --host=0.0.0.0 -e GITHUB_PERSONAL_ACCESS_TOKEN ${替换为GITHUB的TOKEN:GITHUB_PERSONAL_ACCESS_TOKEN} &
+mcp-proxy sh runGithubMCPStdioServer.sh --port=8085 --host=0.0.0.0 -e MYGITHUB_PERSONAL_ACCESS_TOKEN ${替换为GITHUB的TOKEN:MYGITHUB_PERSONAL_ACCESS_TOKEN} &
 ```
