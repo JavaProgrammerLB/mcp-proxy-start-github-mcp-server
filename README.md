@@ -1,4 +1,5 @@
 ## 使用[mcp-proxy](https://github.com/sparfenyuk/mcp-proxy)以Streamable Http的形式启动[Github MCP Server](https://github.com/github/github-mcp-server)的步骤
+服务器上要先安装好docker
 - 在centos服务器上安装uv命令
 ```
 python3 -m ensurepip && pip3 install --no-cache-dir uv
