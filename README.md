@@ -17,3 +17,4 @@ uv tool install git+https://github.com/sparfenyuk/mcp-proxy
 ```
 mcp-proxy sh runGithubMCPStdioServer.sh --port=8085 --host=0.0.0.0 -e MYGITHUB_PERSONAL_ACCESS_TOKEN ${替换为GITHUB的TOKEN:MYGITHUB_PERSONAL_ACCESS_TOKEN} &
 ```
+
